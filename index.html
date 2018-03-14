@@ -18,16 +18,24 @@
       function initMap() {
         var rajkot = {lat: 22.303894, lng: 70.802160};
         var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 4,
-          center: rajkot
+          zoom: 10,
+          center: rajkot,
+          mapTypeId: google.maps.MapTypeId.HYBRID
         });
         var marker = new google.maps.Marker({
           position: rajkot,
           map: map
         });
+        var infowindow = new google.maps.InfoWindow()
+        google.maps.event.addListener(marker, 'click', (function (marker) {
+			return function () {
+				infowindow.setContent('found');
+				infowindow.open(map, marker);
+			}
+		})(marker));
       }
     </script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key="your api key"&callback=initMap">
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBblzn6iLRo10j7_yOwl98TnlHg7vSbVZ4&callback=initMap">
     </script>
 
 </body>
